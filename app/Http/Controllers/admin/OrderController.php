@@ -11,6 +11,7 @@ use App\Models\admin\OrderMembers;
 use App\Models\admin\OrderProducts;
 use Illuminate\Support\Str;
 use DB;
+use GuzzleHttp\Client;
 
 class OrderController extends Controller
 {
@@ -57,7 +58,7 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        // 
         DB::beginTransaction();
         try{
             $formData = $request->post();
@@ -127,7 +128,7 @@ class OrderController extends Controller
             $orderProduct->insert($paramOrderDetail);
             if($orderMember &&$order && $orderProduct){
                 DB::commit();
-                $this->sendMessage();
+                // $this->sendMessage();
                 return response()->json(['success'=>true, 'mess'=>'Thêm mới thành công!','order_code'=>$order->order_code]);
             }else{
                 return response()->json(['success'=>false, 'mess'=>'Thêm mới thất bại!']);
@@ -180,6 +181,8 @@ class OrderController extends Controller
         } 
         
     } 
+
+
 
     /**
      * Store a newly created resource in storage.

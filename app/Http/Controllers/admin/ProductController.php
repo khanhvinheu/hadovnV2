@@ -159,7 +159,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id): JsonResponse
     {
-        // try {
+        try {
             $post = $request->post();
             $file = $request->file();
             // preg_replace('/[0-9]+/', '', array_keys($file))         
@@ -217,9 +217,9 @@ class ProductController extends Controller
             }          
             $dataOption && $optionProduct->insert($dataOption);
             return response()->json(['success'=>true, 'mess'=>'Cập nhật thành công!']);
-        // }catch(\Exception $e){
-        //     return response()->json(['success'=>false, 'mess'=>$e]);
-        // }
+        }catch(\Exception $e){
+            return response()->json(['success'=>false, 'mess'=>$e]);
+        }
 
     }
 
