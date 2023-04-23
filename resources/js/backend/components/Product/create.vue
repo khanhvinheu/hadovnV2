@@ -521,6 +521,7 @@ export default {
             _this.appendFileOptionToFormData()
             this.$refs['form'].validate((valid) => {
                 if (valid) {
+                    this.loadingBtn = true
                     ApiService.post('/api/admin/products/update/' + this.$route.params.id, _this.formData).then(({ data }) => {
                         if (data['success']) {
                             _this.$notify({
@@ -536,6 +537,7 @@ export default {
                                 type: 'error'
                             });
                         }
+                        this.loadingBtn = false
                     })
                 } else {
                     return false;

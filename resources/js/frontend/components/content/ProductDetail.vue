@@ -30,7 +30,7 @@
                     
                     
 
-                    <div style="position: absolute; top:10px; left: 10px">
+                    <div style="position: absolute; top:10px; left: 10px; max-height: 70%;overflow-x: hidden;">
                         <div class="image--item" v-bind:class="{'item-active':itemActive== i}" v-for="(item,i) in dataProductDetail['images_product']" :key="item.id" @click="changeItemSlide(i)" >
                             <el-image style="height: 100%; width: 100%" fit="cover" :src="item.path" lazy></el-image>
                         </div>
