@@ -287,6 +287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this.appendFileOptionToFormData();
       this.$refs['form'].validate(function (valid) {
         if (valid) {
+          _this11.loadingBtn = true;
           _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].post('/api/admin/products/update/' + _this11.$route.params.id, _this.formData).then(function (_ref5) {
             var data = _ref5.data;
             if (data['success']) {
@@ -305,6 +306,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 type: 'error'
               });
             }
+            _this11.loadingBtn = false;
           });
         } else {
           return false;

@@ -3,9 +3,10 @@
       <div
         class="preloader flex-column justify-content-center align-items-center"
         >
+        <!-- src="/assets/img/AdminLTELogo.png" -->
          <img
           class="animation__shake"
-          src="/assets/img/AdminLTELogo.png"
+          :src="$appSetting.LOGO_META"
           alt="AdminLTELogo"
           height="60"
           width="60"

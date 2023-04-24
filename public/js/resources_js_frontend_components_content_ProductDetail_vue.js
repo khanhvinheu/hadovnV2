@@ -353,7 +353,9 @@ var render = function render() {
     staticStyle: {
       position: "absolute",
       top: "10px",
-      left: "10px"
+      left: "10px",
+      "max-height": "70%",
+      "overflow-x": "hidden"
     }
   }, _vm._l(_vm.dataProductDetail["images_product"], function (item, i) {
     return _c("div", {

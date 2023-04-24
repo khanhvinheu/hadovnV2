@@ -782,23 +782,19 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("div", {
     staticClass: "preloader flex-column justify-content-center align-items-center"
   }, [_c("img", {
     staticClass: "animation__shake",
     attrs: {
-      src: "/assets/img/AdminLTELogo.png",
+      src: _vm.$appSetting.LOGO_META,
       alt: "AdminLTELogo",
       height: "60",
       width: "60"
     }
   })]);
-}];
+};
+var staticRenderFns = [];
 render._withStripped = true;
 
 

@@ -74,18 +74,27 @@ class ProductController extends Controller
             $product->save();
             // image
             foreach($file as $index=>$value){
-                 $dataImg = [
-                    'id_product'=>$product->id,
-                    'path'=>$this->upload($value),
-                 ];
-                 array_push($listPath, $dataImg);
+                if(preg_replace('/[0-9]+/', '', $index)=='file'){
+                    $dataImg = [
+                        'id_product'=>$product->id,
+                        'path'=>$this->upload($value),
+                    ];
+                    array_push($listPath, $dataImg);
+                }
             }
             $imageProduct= new ImagesProduct();
             $imageProduct->insert($listPath);
             //option
             $productOption= json_decode($post['option'],true);
+            @$post['fileOption'] && $file_detail = $post['fileOption']=json_decode($post['fileOption'],true);                
+
             $dataOption=[];
             foreach ($productOption as $index =>$valueOption){
+                if(@$file['fileOption'.$index]){
+                    $valueOption['image'] = $this->upload($file['fileOption'.$index]);
+                }else{
+                    $valueOption['image'] =@$file_detail[$index]?$file_detail[$index]:'';
+                }
                 $size=$valueOption['id_size'];
                 $valueOption['id_product']=$product->id;
                 $valueOption['id_color']=$valueOption['id_color'][0];
@@ -194,12 +203,12 @@ class ProductController extends Controller
             $productOption = json_decode($post['option'], true);
             $optionProduct = new OptionsProduct();
             $dataOption = [];  
-            $post['fileOption'] && $file_detail = $post['fileOption']=json_decode($post['fileOption'],true);                
+            @$post['fileOption'] && $file_detail = $post['fileOption']=json_decode($post['fileOption'],true);                
             foreach ($productOption as $index => $valueOption) {   
                 if(@$file['fileOption'.$index]){
                     $valueOption['image'] = $this->upload($file['fileOption'.$index]);
                 }else{
-                    $valueOption['image'] =$file_detail[$index];
+                    $valueOption['image'] =@$file_detail[$index]?$file_detail[$index]:'';
                 }
                 $size=$valueOption['id_size'];
                 $valueOption['id_product'] = $id;
