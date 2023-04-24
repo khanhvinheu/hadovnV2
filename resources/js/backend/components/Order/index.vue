@@ -72,7 +72,7 @@
                                                            v-show="props.row.payment_methods==2 && props.row.payment_status==1" type="success">
                                                     <i class="el-icon-money"></i>
                                                     Xác nhận thanh toán</el-button>
-                                                <el-select @change="updateStatus(props.row.id,props.row.pack_status,'pack_status')" v-model="props.row.pack_status" placeholder="Trạng thái đơn hàng">
+                                                <el-select v-if="listPackStatus" @change="updateStatus(props.row.id,props.row.pack_status,'pack_status')" v-model="props.row.pack_status" placeholder="Trạng thái đơn hàng">
                                                     <el-option
                                                         v-for="item in listPackStatus"
                                                         :key="item.value"

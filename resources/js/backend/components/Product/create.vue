@@ -170,7 +170,7 @@
                                                     <i class="el-icon-user"></i>
                                                     Màu
                                                 </template>
-                                                <el-select style="width:100%" multiple :multiple-limit="1"
+                                                <el-select v-if="listColor" style="width:100%" multiple :multiple-limit="1"
                                                     v-model="item['id_color']" placeholder="ví dụ: Đỏ, xanh, vàng,...">
                                                     <el-option v-for="item in listColor" :key="item.id" :label="item.title"
                                                         :value="item.id">

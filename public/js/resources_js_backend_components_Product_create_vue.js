@@ -1486,7 +1486,7 @@ var render = function render() {
       slot: "label"
     }, [_c("i", {
       staticClass: "el-icon-user"
-    }), _vm._v("\n                                                Màu\n                                            ")]), _vm._v(" "), _c("el-select", {
+    }), _vm._v("\n                                                Màu\n                                            ")]), _vm._v(" "), _vm.listColor ? _c("el-select", {
       staticStyle: {
         width: "100%"
       },
@@ -1510,7 +1510,7 @@ var render = function render() {
           value: item.id
         }
       });
-    }), 1)], 2)], 1)], 1)])], 1), _vm._v(" "), _c("div", {
+    }), 1) : _vm._e()], 2)], 1)], 1)])], 1), _vm._v(" "), _c("div", {
       staticClass: "col-3 mt-2"
     }, [_c("el-form-item", {
       attrs: {
