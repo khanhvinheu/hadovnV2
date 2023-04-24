@@ -672,7 +672,7 @@ var render = function render() {
   }, [_c("a", {
     on: {
       click: function click($event) {
-        return _vm.$router.replace({
+        return _vm.navRouter({
           name: "list-product"
         });
       }
@@ -772,6 +772,9 @@ var render = function render() {
       on: {
         click: function click($event) {
           item.route && _vm.navRouter(item.route);
+        },
+        mouseleave: function mouseleave($event) {
+          _vm.menuSubActive = "";
         },
         mouseover: function mouseover($event) {
           _vm.menuActive = item.value;

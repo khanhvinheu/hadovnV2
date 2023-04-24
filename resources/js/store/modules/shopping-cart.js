@@ -16,7 +16,7 @@ const mutations = {
         let cartProduct = state.cart.find((productel) => productel.id === product.id);
 
         if (cartProduct) {
-            let findIndexOption = state.cart.findIndex((productel) => (productel.id === product.id && productel['payment']['id']==product['payment']['id']))
+            let findIndexOption = state.cart.findIndex((productel) => (productel.id === product.id && productel['payment']['id']==product['payment']['id']&&productel['payment']['id_size']==product['payment']['id_size']))
             if(findIndexOption !=-1){
                 state.cart[findIndexOption]['payment']['total']+=product['payment']['total']
             }else{

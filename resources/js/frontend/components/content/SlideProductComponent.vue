@@ -2,9 +2,9 @@
     <div class="content__product-component">
         <VueSlickCarousel v-bind="setting" v-if="dataProduct.length > 0">
             <div v-for="(item, i) in dataProduct" class="home__page-product">
-                <div class="product-grid product option-changed">
+                <div class="product-grid product option-changed" @click="navRouter({ name: 'product-detail', params: { id: item.id } })">
                     <div class="product-grid__thumbnail">
-                        <div class="product-grid__image" @click="$router.push({name:'product-detail',params:{id:item.id}})">
+                        <div class="product-grid__image">
                             <img loading="lazy"
                                  :src="item.images_product[0].path"
                                  class="home-banner">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 class="product-grid__title">
+                        <h3 class="product-grid__title"  @click="navRouter({ name: 'product-detail', params: { id: item.id } })">
                             <a class="name__product">
                                 {{ item.name }}
                             </a>
@@ -127,6 +127,19 @@
             this.getDataProduct()
         },
         methods: {
+            navRouter(route){               
+                this.$router.push(route).catch(err => {
+                    // Ignore the vuex err regarding  navigating to the page they are already on.
+                    if (
+                        err.name !== 'NavigationDuplicated' &&
+                        !err.message.includes('Avoided redundant navigation to current location')
+                    ) {
+                        // But print any other errors to the console
+                        logError(err);
+                    }
+                }); 
+                              
+            },
             getListSizeInString(e){
                 let arr =[]
                 e & e.map(el=>{

@@ -228,6 +228,9 @@
             colorSelect(color){
                 this.dataCheck=color
                 this.sizeSelect=''
+            },
+            $route(to,from){
+                this.getListDataDetail()
             }
 
         },
@@ -273,7 +276,7 @@
             },
             addCart(item){
                 let data = item
-                data['payment']={...this.dataCheck,total:this.totalItem}
+                data['payment']={...this.dataCheck,total:this.totalItem}               
                 this.$store.dispatch("shoppingCart/addToCart", data);
                 this.$notify({
                     title: 'Success',

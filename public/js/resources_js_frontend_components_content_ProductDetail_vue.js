@@ -84,6 +84,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     colorSelect: function colorSelect(color) {
       this.dataCheck = color;
       this.sizeSelect = '';
+    },
+    $route: function $route(to, from) {
+      this.getListDataDetail();
     }
   },
   methods: {
@@ -241,6 +244,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.getDataProduct();
   },
   methods: {
+    navRouter: function navRouter(route) {
+      this.$router.push(route)["catch"](function (err) {
+        // Ignore the vuex err regarding  navigating to the page they are already on.
+        if (err.name !== 'NavigationDuplicated' && !err.message.includes('Avoided redundant navigation to current location')) {
+          // But print any other errors to the console
+          logError(err);
+        }
+      });
+    },
     getListSizeInString: function getListSizeInString(e) {
       var arr = [];
       e & e.map(function (el) {
@@ -701,14 +713,10 @@ var render = function render() {
     return _c("div", {
       staticClass: "home__page-product"
     }, [_c("div", {
-      staticClass: "product-grid product option-changed"
-    }, [_c("div", {
-      staticClass: "product-grid__thumbnail"
-    }, [_c("div", {
-      staticClass: "product-grid__image",
+      staticClass: "product-grid product option-changed",
       on: {
         click: function click($event) {
-          return _vm.$router.push({
+          return _vm.navRouter({
             name: "product-detail",
             params: {
               id: item.id
@@ -716,6 +724,10 @@ var render = function render() {
           });
         }
       }
+    }, [_c("div", {
+      staticClass: "product-grid__thumbnail"
+    }, [_c("div", {
+      staticClass: "product-grid__image"
     }, [_c("img", {
       staticClass: "home-banner",
       attrs: {
@@ -758,7 +770,17 @@ var render = function render() {
         }
       })]);
     }), 0)]), _vm._v(" "), _c("h3", {
-      staticClass: "product-grid__title"
+      staticClass: "product-grid__title",
+      on: {
+        click: function click($event) {
+          return _vm.navRouter({
+            name: "product-detail",
+            params: {
+              id: item.id
+            }
+          });
+        }
+      }
     }, [_c("a", {
       staticClass: "name__product"
     }, [_vm._v("\n                            " + _vm._s(item.name) + "\n                        ")])]), _vm._v(" "), _c("div", {

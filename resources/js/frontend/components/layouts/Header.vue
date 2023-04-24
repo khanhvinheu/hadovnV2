@@ -43,7 +43,7 @@
                     <div class="nav-tab">
                         <div class="nav-tab__label"
                                  style="flex-flow: column;align-items: flex-start;padding-bottom: 10px">
-                                <a @click="$router.replace({name:'list-product'})">
+                                <a @click="navRouter({name:'list-product'})">
                                     <b>Tất cả sản phẩm</b>
                                 </a>
                             </div>
@@ -92,7 +92,7 @@
             <div class="header__menu mobile--hidden tablet--hidden">
                 <div>
                     <ul class="nav">
-                        <li class="nav__item has-child" @click="item.route&& navRouter(item.route)" v-for="item in menuItem" @mouseover="menuActive=item.value; menuSubActive=''">
+                        <li class="nav__item has-child" @click="item.route&& navRouter(item.route)" v-for="item in menuItem" @mouseleave="menuSubActive=''"   @mouseover="menuActive=item.value; menuSubActive=''">
                             <a  rel-script="sub-menu">
                                 {{item.title}}
                             </a>
