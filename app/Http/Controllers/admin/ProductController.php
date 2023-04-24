@@ -11,6 +11,7 @@ use DB;
 use Illuminate\Http\JsonResponse;
 use App\Services\QueryService;
 use File;
+use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /**
@@ -121,7 +122,8 @@ class ProductController extends Controller
         }
     }
     public function upload($file){
-        $fileName ='product_'.explode('.',$file->getClientOriginalName())[0].time().'.'.$file->extension();
+        $randomString = Str::random(10); 
+        $fileName ='product_'.explode('.',$file->getClientOriginalName())[0].time().$randomString.'.'.$file->extension();
         if($file->move(public_path('uploads/product'), $fileName)){
             return '/uploads/product/'.$fileName;
         }
