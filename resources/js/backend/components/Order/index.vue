@@ -77,7 +77,7 @@
                                                         v-for="item in listPackStatus"
                                                         :key="item.value"
                                                         :label="item.title"
-                                                        :value="item.value">
+                                                        :value="(item.value).toString()">
                                                     </el-option>
                                                 </el-select>
                                                 <!--                                                <el-button type="primary">-->
@@ -302,8 +302,7 @@ export default {
         this.getList()
     },
     methods: {
-        handleClick(){
-            console.log(this.activeName)
+        handleClick(){          
             this.getList()
         },
         handleSizeChange(val) {

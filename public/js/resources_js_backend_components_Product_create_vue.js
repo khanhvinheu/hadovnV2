@@ -92,15 +92,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.getCategory();
-    this.getListColor();
-    this.getListSize();
-    if (this.$route.params.id) {
-      this.isUpdate = true;
-      this.getDetailProduct();
-    } else {
-      this.isUpdate = false;
-    }
+    var _this2 = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _this2.getCategory();
+          case 2:
+            _context.next = 4;
+            return _this2.getListColor();
+          case 4:
+            _context.next = 6;
+            return _this2.getListSize();
+          case 6:
+            if (!_this2.$route.params.id) {
+              _context.next = 12;
+              break;
+            }
+            _this2.isUpdate = true;
+            _context.next = 10;
+            return _this2.getDetailProduct();
+          case 10:
+            _context.next = 13;
+            break;
+          case 12:
+            _this2.isUpdate = false;
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }))();
   },
   methods: {
     uploadFile: function uploadFile(i) {
@@ -143,153 +166,118 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // }          
     },
     setAll: function setAll() {
-      var _this2 = this;
-      this.form.option && this.form.option.map(function (e) {
-        e.total = _this2.total_all;
-        e.price = _this2.price_all;
-      });
-    },
-    clearAll: function clearAll() {
       var _this3 = this;
-      this.total_all = '';
-      this.price_all = '';
       this.form.option && this.form.option.map(function (e) {
         e.total = _this3.total_all;
         e.price = _this3.price_all;
       });
     },
+    clearAll: function clearAll() {
+      var _this4 = this;
+      this.total_all = '';
+      this.price_all = '';
+      this.form.option && this.form.option.map(function (e) {
+        e.total = _this4.total_all;
+        e.price = _this4.price_all;
+      });
+    },
     //getListColor
     getListColor: function getListColor() {
-      var _this4 = this;
+      var _this5 = this;
       _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].query('/api/admin/product_color').then(function (_ref) {
         var data = _ref.data;
         if (data['success']) {
-          _this4.listColor = data['data'];
+          _this5.listColor = data['data'];
         }
       });
     },
     //getListSize
     getListSize: function getListSize() {
-      var _this5 = this;
+      var _this6 = this;
       _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].query('/api/admin/product_size').then(function (_ref2) {
         var data = _ref2.data;
         if (data['success']) {
-          _this5.listSize = data['data'];
+          _this6.listSize = data['data'];
         }
       });
     },
     //getDetail
     getDetailProduct: function getDetailProduct() {
-      var _this6 = this;
+      var _this7 = this;
       this.loadingForm = true;
       _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].query('/api/admin/products/' + this.$route.params.id).then(function (_ref3) {
         var data = _ref3.data;
         if (data['success']) {
           var res = data['data'];
-          _this6.form.name = res['name'];
-          _this6.form.id_category = res['id_category'];
-          _this6.getParent(res['id_category']);
-          _this6.form.trade_mark = res['trade_mark'];
-          _this6.form.description = res['description'];
-          _this6.form.option = res['options_product'];
-          _this6.form.option.map(function (e, i) {
-            e.id_color = [e.id_color];
+          _this7.form.name = res['name'];
+          _this7.form.id_category = res['id_category'];
+          _this7.getParent(res['id_category']);
+          _this7.form.trade_mark = res['trade_mark'];
+          _this7.form.description = res['description'];
+          _this7.form.option = res['options_product'];
+          _this7.form.option.map(function (e, i) {
+            e.id_color = [parseInt(e.id_color)];
             e.id_size = JSON.parse(e.list_size);
             e.id = e.id;
           });
           res['images_product'].forEach(function (e) {
-            _this6.fileList.push({
+            _this7.fileList.push({
               url: e.path,
               id: e.id
             });
           });
           res['options_product'].forEach(function (e, i) {
-            _this6.fileListOption.push(e.image);
+            _this7.fileListOption.push(e.image);
           });
         }
-        _this6.loadingForm = false;
+        _this7.loadingForm = false;
       });
     },
     appendToFormData: function appendToFormData() {
-      var _this7 = this;
+      var _this8 = this;
       var _this = this;
       Object.keys(this.form).forEach(function (key) {
         if (key === 'option' || key === 'delete_image' || key === 'delete_id') {
-          _this7.formData.set(key, JSON.stringify(_this7.form[key]));
+          _this8.formData.set(key, JSON.stringify(_this8.form[key]));
           return;
         }
-        _this.formData.set(key, _this7.form[key]);
+        _this.formData.set(key, _this8.form[key]);
       });
       _this.formData.set('set_id_size', this.listSize[0]['id']);
     },
     appendFileToFormData: function appendFileToFormData() {
-      var _this8 = this;
+      var _this9 = this;
       var index = 0;
       this.fileList.map(function (e) {
         if (e && e.status == "ready") {
-          _this8.formData.set('file' + index, e.raw);
+          _this9.formData.set('file' + index, e.raw);
           index++;
         }
       });
     },
     appendFileOptionToFormData: function appendFileOptionToFormData() {
-      var _this9 = this;
+      var _this10 = this;
       var index = 0;
       this.fileListOption.map(function (e, i) {
         if (e instanceof File) {
-          _this9.formData.set('fileOption' + i, e);
+          _this10.formData.set('fileOption' + i, e);
           index++;
         } else {
-          _this9.formData.set('fileOption', JSON.stringify(_this9.fileListOption));
+          _this10.formData.set('fileOption', JSON.stringify(_this10.fileListOption));
         }
       });
     },
     submitData: function submitData() {
-      var _this10 = this;
-      var _this = this;
-      _this.appendToFormData();
-      _this.appendFileToFormData();
-      _this.appendFileOptionToFormData();
-      this.$refs['form'].validate(function (valid) {
-        if (valid) {
-          _this10.loadingBtn = true;
-          _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].post('/api/admin/products/create', _this.formData).then(function (_ref4) {
-            var data = _ref4.data;
-            if (data['success']) {
-              _this.$notify({
-                title: 'Success',
-                message: data['mess'],
-                type: 'success'
-              });
-              _this.$router.push({
-                name: 'ProductList'
-              });
-            } else {
-              _this.$notify({
-                title: 'Error',
-                message: data['mess'],
-                type: 'error'
-              });
-            }
-            _this10.loadingBtn = false;
-          });
-        } else {
-          return false;
-        }
-      });
-    },
-    updateData: function updateData() {
       var _this11 = this;
       var _this = this;
-      _this.formData = new FormData();
       _this.appendToFormData();
       _this.appendFileToFormData();
       _this.appendFileOptionToFormData();
       this.$refs['form'].validate(function (valid) {
         if (valid) {
           _this11.loadingBtn = true;
-          _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].post('/api/admin/products/update/' + _this11.$route.params.id, _this.formData).then(function (_ref5) {
-            var data = _ref5.data;
+          _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].post('/api/admin/products/create', _this.formData).then(function (_ref4) {
+            var data = _ref4.data;
             if (data['success']) {
               _this.$notify({
                 title: 'Success',
@@ -313,6 +301,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       });
     },
+    updateData: function updateData() {
+      var _this12 = this;
+      var _this = this;
+      _this.formData = new FormData();
+      _this.appendToFormData();
+      _this.appendFileToFormData();
+      _this.appendFileOptionToFormData();
+      this.$refs['form'].validate(function (valid) {
+        if (valid) {
+          _this12.loadingBtn = true;
+          _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].post('/api/admin/products/update/' + _this12.$route.params.id, _this.formData).then(function (_ref5) {
+            var data = _ref5.data;
+            if (data['success']) {
+              _this.$notify({
+                title: 'Success',
+                message: data['mess'],
+                type: 'success'
+              });
+              _this.$router.push({
+                name: 'ProductList'
+              });
+            } else {
+              _this.$notify({
+                title: 'Error',
+                message: data['mess'],
+                type: 'error'
+              });
+            }
+            _this12.loadingBtn = false;
+          });
+        } else {
+          return false;
+        }
+      });
+    },
     resetForm: function resetForm(formName) {
       this.$refs[formName].resetFields();
       this.listTitleCategory = '';
@@ -326,14 +349,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.dialogSelectCategory = false;
     },
     getParent: function getParent(id) {
-      var _this12 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var _this13 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var _this;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _this = _this12;
-              _context.next = 3;
+              _this = _this13;
+              _context2.next = 3;
               return _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].query('/api/admin/categorys/getParent/' + id).then(function (_ref6) {
                 var data = _ref6.data;
                 if (data['success']) {
@@ -342,9 +365,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               });
             case 3:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
-        }, _callee);
+        }, _callee2);
       }))();
     },
     submit: function submit() {
@@ -352,14 +375,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     // CategoryProduct
     getCategory: function getCategory() {
-      var _this13 = this;
+      var _this14 = this;
       _common_api_service__WEBPACK_IMPORTED_MODULE_3__["default"].query('/api/admin/categorys', {
         params: {
           type: 'data'
         }
       }).then(function (_ref7) {
         var data = _ref7.data;
-        _this13.listCategory = data['data'];
+        _this14.listCategory = data['data'];
       });
     },
     // Custorm option

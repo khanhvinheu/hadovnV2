@@ -331,13 +331,13 @@ export default {
             listSize: [],
         }
     },
-    mounted() {
-        this.getCategory()
-        this.getListColor()
-        this.getListSize()
+    async mounted() {
+        await this.getCategory()
+        await this.getListColor()
+        await this.getListSize()
         if (this.$route.params.id) {
             this.isUpdate = true
-            this.getDetailProduct()
+            await this.getDetailProduct()
         } else {
             this.isUpdate = false
         }
@@ -432,7 +432,7 @@ export default {
                     this.form.option = res['options_product']
 
                     this.form.option.map((e, i) => {
-                        e.id_color = [e.id_color]
+                        e.id_color = [parseInt(e.id_color) ]
                         e.id_size = JSON.parse(e.list_size)
                         e.id = e.id
                     })

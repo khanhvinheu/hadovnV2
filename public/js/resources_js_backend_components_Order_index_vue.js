@@ -56,7 +56,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleClick: function handleClick() {
-      console.log(this.activeName);
       this.getList();
     },
     handleSizeChange: function handleSizeChange(val) {
@@ -355,7 +354,7 @@ var render = function render() {
           }
         }, [_c("i", {
           staticClass: "el-icon-money"
-        }), _vm._v("\n                                                    Xác nhận thanh toán")]), _vm._v(" "), _c("el-select", {
+        }), _vm._v("\n                                                    Xác nhận thanh toán")]), _vm._v(" "), _vm.listPackStatus ? _c("el-select", {
           attrs: {
             placeholder: "Trạng thái đơn hàng"
           },
@@ -376,10 +375,10 @@ var render = function render() {
             key: item.value,
             attrs: {
               label: item.title,
-              value: item.value
+              value: parseInt(item.value)
             }
           });
-        }), 1)], 1)]), _vm._v(" "), _c("div", [_c("span", {
+        }), 1) : _vm._e()], 1)]), _vm._v(" "), _c("div", [_c("span", {
           staticClass: "title-detail-order",
           staticStyle: {
             "margin-left": "15px"
