@@ -375,7 +375,7 @@ var render = function render() {
             key: item.value,
             attrs: {
               label: item.title,
-              value: parseInt(item.value)
+              value: item.value.toString()
             }
           });
         }), 1) : _vm._e()], 1)]), _vm._v(" "), _c("div", [_c("span", {

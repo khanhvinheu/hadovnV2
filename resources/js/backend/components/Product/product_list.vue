@@ -55,8 +55,8 @@
                                             <tr v-for="item in props.row.options_product">
                                                 <td>
                                                     <div style="display: flex; align-items: center">
-<!--                                                        <el-color-picker :value="item.color.value"></el-color-picker>-->
-                                                        <div class="color-item" v-bind:style="{'background-color':item.color.value}"></div>
+                                                        <div v-if="item.color.image" class="color-item" style="background-repeat: no-repeat;background-size: cover;background-position: center;border:1px solid rgb(0,0,0,0.3)" v-bind:style="{'background-image':('url('+item.color.image+')')}"></div>
+                                                        <div v-else class="color-item" v-bind:style="{'background-color':item.color.value}"></div>
                                                         <span class="ml-2">{{ item.color.title }}</span>
                                                     </div>
                                                 </td>

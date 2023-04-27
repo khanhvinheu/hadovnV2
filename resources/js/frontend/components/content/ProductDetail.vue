@@ -53,19 +53,22 @@
                     <span style="font-size: 18px; font-weight: bold">{{dataCheck.price | toThousandFilter}} đ</span>
                 </div>
                 <div class="color--product">
-                    <span>Màu sắc: {{colorSelect['color'].title}}</span>
+                    <span>Mẫu: {{colorSelect['color'].title}}</span>
                     <span style="font-size: 18px; font-weight: bold"></span>
                 </div>
 
                 <div class="options--product_color">
-                    <div v-for="(item,i) in listColorProduct"
+                    <!-- v-for="itemColor in item['options_product'].filter((a, i) => item['options_product'].findIndex((s) => a.id_color === s.id_color) === i) -->
+                    <div v-for="(item,i) in listColorProduct.filter((a, i) => listColorProduct.findIndex((s) => a.id_color === s.id_color) === i)"
                          @mouseover="imageHover=item.image"
                          @mouseleave="imageHover=''"
                          :key="i"
                          class="item--color"
                          v-bind:class="{'active-color':(item['color']['id'] == colorSelect['color']['id'])}"
                          >
-                        <div style="height: 100%; width: 100%"  @click="changeColor(item)"
+                         <div @click="changeColor(item)" v-if="item['color']['image']" style="height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;" v-bind:style="{'background-image':('url('+item['color']['image']+')')}"></div>
+
+                        <div v-else style="height: 100%; width: 100%"  @click="changeColor(item)"
                               v-bind:style="{'background-color':item['color']['value']}">
                         </div>
                     </div>
@@ -336,7 +339,7 @@
     .item--color{
         height: 32px;
         width: 60px;
-        border-radius: 10px;
+        border-radius: 20px;
         padding: 5px;
         margin-right: 5px;
         color: #fff;

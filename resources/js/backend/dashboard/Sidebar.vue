@@ -105,7 +105,7 @@
               <li class="nav-item">
                   <router-link class="nav-link" :to="({name:'ProductColorList'})" v-bind:class="{ 'active': $route.name=='ProductColorList' }">
                       <i class="el-icon-set-up"></i>
-                      <p>Quản lý màu sản phẩm</p>
+                      <p>Quản lý mẫu sản phẩm</p>
                   </router-link>
               </li>
               <li class="nav-item">

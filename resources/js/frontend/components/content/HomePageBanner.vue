@@ -42,7 +42,7 @@
         },
         data() {
             return {
-                setting: {
+                settings: {
                     "dots": true,
                     "dotsClass": "slick-dots custom-dot-class",
                     "edgeFriction": 0.35,

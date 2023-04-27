@@ -954,7 +954,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "el-icon-set-up"
-  }), _vm._v(" "), _c("p", [_vm._v("Quản lý màu sản phẩm")])])], 1), _vm._v(" "), _c("li", {
+  }), _vm._v(" "), _c("p", [_vm._v("Quản lý mẫu sản phẩm")])])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "nav-link",

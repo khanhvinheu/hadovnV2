@@ -28,7 +28,9 @@
                             <div class="options-color">
                                 <div v-for="itemColor in item['options_product'].filter((a, i) => item['options_product'].findIndex((s) => a.id_color === s.id_color) === i)"
                                      class="option-color__item is-current">
-                                    <span class="checkmark" v-bind:style="{'background-color':itemColor['color']['value']}"></span>
+                                     <span v-if="itemColor['color']['image']" class="item-color" v-bind:style="{'background-image':('url('+itemColor['color']['image']+')')}"></span>
+
+                                    <span v-else class="checkmark" v-bind:style="{'background-color':itemColor['color']['value']}"></span>
                                 </div>
                             </div>
                         </div>
@@ -159,6 +161,13 @@
 </script>
 
 <style scoped>
+    .item-color{
+        height: 20px; 
+        width: 35px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
     .product-color__item {
         height: 25px;
         width: 50px;

@@ -747,7 +747,7 @@ var render = function render() {
           }
         }, [_c("i", {
           staticClass: "el-icon-search"
-        }), _vm._v(" Tìm\n                                        kiếm\n                                    ")])];
+        }), _vm._v(" Tìm\n                                    kiếm\n                                ")])];
       },
       proxy: true
     }]),
@@ -772,7 +772,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "el-icon-plus"
-  }), _vm._v(" Thêm mới\n                            ")])], 1), _vm._v(" "), _c("el-table", {
+  }), _vm._v(" Thêm mới\n                        ")])], 1), _vm._v(" "), _c("el-table", {
     directives: [{
       name: "loading",
       rawName: "v-loading",
@@ -821,14 +821,25 @@ var render = function render() {
               display: "flex",
               "align-items": "center"
             }
-          }, [_c("div", {
+          }, [item.color.image ? _c("div", {
+            staticClass: "color-item",
+            staticStyle: {
+              "background-repeat": "no-repeat",
+              "background-size": "cover",
+              "background-position": "center",
+              border: "1px solid rgb(0,0,0,0.3)"
+            },
+            style: {
+              "background-image": "url(" + item.color.image + ")"
+            }
+          }) : _c("div", {
             staticClass: "color-item",
             style: {
               "background-color": item.color.value
             }
           }), _vm._v(" "), _c("span", {
             staticClass: "ml-2"
-          }, [_vm._v(_vm._s(item.color.title))])])]), _vm._v(" "), _c("td", [_vm._v("\n                                                  " + _vm._s(JSON.parse(item.list_size).join(", ")) + "\n                                                ")]), _vm._v(" "), _c("td", [item.total > 0 ? _c("el-tag", {
+          }, [_vm._v(_vm._s(item.color.title))])])]), _vm._v(" "), _c("td", [_vm._v("\n                                              " + _vm._s(JSON.parse(item.list_size).join(", ")) + "\n                                            ")]), _vm._v(" "), _c("td", [item.total > 0 ? _c("el-tag", {
             attrs: {
               effect: "dark",
               type: "success"
@@ -926,7 +937,7 @@ var render = function render() {
     scopedSlots: _vm._u([{
       key: "default",
       fn: function fn(scope) {
-        return [_vm._v("\n                                    " + _vm._s(_vm._f("formatDate")(scope.row.created_at)) + "\n                                ")];
+        return [_vm._v("\n                                " + _vm._s(_vm._f("formatDate")(scope.row.created_at)) + "\n                            ")];
       }
     }])
   }), _vm._v(" "), _c("el-table-column", {

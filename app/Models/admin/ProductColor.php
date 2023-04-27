@@ -13,5 +13,6 @@ class ProductColor extends Model
         'id',
         'title',
         'value',
+        'image'
     ];
 }

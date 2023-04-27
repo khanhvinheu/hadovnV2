@@ -147,8 +147,7 @@ export default {
       // })
     },
     beforeRemove (index, done, fileList) {
-        done()
-        console.log('----');
+        done()       
         this.formData.images = '';
     },
 

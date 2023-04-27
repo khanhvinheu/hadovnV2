@@ -1509,14 +1509,14 @@ var render = function render() {
       slot: "label"
     }, [_c("i", {
       staticClass: "el-icon-user"
-    }), _vm._v("\n                                                Màu\n                                            ")]), _vm._v(" "), _vm.listColor ? _c("el-select", {
+    }), _vm._v("\n                                                Mẫu\n                                            ")]), _vm._v(" "), _vm.listColor ? _c("el-select", {
       staticStyle: {
         width: "100%"
       },
       attrs: {
         multiple: "",
         "multiple-limit": 1,
-        placeholder: "ví dụ: Đỏ, xanh, vàng,..."
+        placeholder: "ví dụ: mẫu 1, mẫu 2,..."
       },
       model: {
         value: item["id_color"],

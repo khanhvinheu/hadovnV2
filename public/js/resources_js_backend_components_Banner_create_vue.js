@@ -87,7 +87,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     beforeRemove: function beforeRemove(index, done, fileList) {
       done();
-      console.log('----');
       this.formData.images = '';
     },
     getList: function getList() {

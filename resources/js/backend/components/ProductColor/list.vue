@@ -55,7 +55,8 @@
                                     label="COLOR VALUE"
                                 >
                                     <template slot-scope="scope">
-                                        <div class="color-item" v-bind:style="{'background-color':scope.row.value}"></div>
+                                        <div v-if="scope.row.image" class="color-item" style="background-repeat: no-repeat;background-size: cover;background-position: center;border:1px solid rgb(0,0,0,0.3)" v-bind:style="{'background-image':('url('+scope.row.image+')')}"></div>
+                                        <div v-else class="color-item" v-bind:style="{'background-color':scope.row.value}"></div>
                                     </template>
                                 </el-table-column>
 
@@ -73,7 +74,7 @@
                                     <template slot-scope="scope">
                                         {{ scope.row.created_at | formatDate}}
                                     </template>
-                                </el-table-column>
+                                </el-table-column>                                
                                 <el-table-column
                                     label="THAO TÁC"
                                     width="180"
@@ -128,7 +129,7 @@
             </div>
         </div>
         <el-dialog :visible.sync="outerVisible">
-            <formData :resID="idUpdate" @success="success"/>
+            <formData :resID="idUpdate" :triggerLoad="triggerLoad" @success="success"/>
         </el-dialog>
     </div>
 
@@ -151,7 +152,8 @@ export default {
                 Total:10,
                 Page:1,
                 PageLimit:10
-            }
+            },
+            triggerLoad:new Date().getTime(),
         }
     },
     mounted() {
@@ -164,6 +166,7 @@ export default {
         },
         update(e){
             this.idUpdate = e.id
+            this.triggerLoad = new Date().getTime()
             this.outerVisible=true
         },
         handleSizeChange(val) {

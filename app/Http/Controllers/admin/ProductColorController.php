@@ -75,7 +75,14 @@ class ProductColorController extends Controller
     {
         //
         try{
-            $formData = $request->post();
+            $formData = $request->post();            
+            // $request->validate([
+            //     'image' => 'required|mimes:png,PNG,jpg,JPG|max:2048',
+            // ]);
+            $file = $request->file('image');
+            if($file){
+                $formData['image']= $this->upoadFile($file);
+            }
             $res = ProductColor::create($formData);
             if($res){
                 return response()->json(['success'=>true, 'mess'=>'Thêm mới thành công!']);
@@ -84,6 +91,14 @@ class ProductColorController extends Controller
             }
         }catch(\Exception $e){
             return response()->json(['success'=>false, 'mess'=>$e]);
+        }
+    }
+
+     // uploadFile
+     public function upoadFile($file){
+        $fileName ='banner_'.time().'.'.$file->extension();
+        if($file->move(public_path('uploads/banners'), $fileName)){
+            return '/uploads/banners/'.$fileName;
         }
     }
 
@@ -133,7 +148,7 @@ class ProductColorController extends Controller
             $formData = $request->post();
             $file = $request->file('image');
             if($file){
-                $formData['path']= $this->upoadFile($file);
+                $formData['image']= $this->upoadFile($file);
             }
             $res = ProductColor::find($id)->update($formData);
             if($res){
